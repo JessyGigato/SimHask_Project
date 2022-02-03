@@ -2,10 +2,8 @@ module Utils where
 import System.IO.Unsafe                                         
 import System.Random 
 
-
--- type that defines the Posinates on the board
 type Pos = (Int, Int)
-
+type Child = (Pos, Int)
 
 -------------------------------------------------------------------------------------
 -------- METODOS AUXILIARES ---------------
