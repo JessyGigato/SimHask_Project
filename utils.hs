@@ -11,13 +11,6 @@ type Child = (Pos, Int)
 get_rand :: Int -> Int -> Int 
 get_rand min max = unsafePerformIO (getStdRandom (randomR (min, max)))
 
--- lista de tamano n con x elementos iguales
-n_eq_list _ 0 = []
-n_eq_list x n = x : n_eq_list x (n - 1)
-
--- calculates the percentage of a number x with respect to a total y
-percent perc total = perc * total / 100
-
 -- devuelve una lista donde no estan los elementos de la 1era
 not_in_list :: [Pos] -> [Pos] -> [Pos]
 not_in_list [] _ = []
@@ -61,16 +54,6 @@ create_matrix x y xt yt  | (x /= xt && y /= yt) = (x, y) : create_matrix x (y+1)
 list_from_string :: [String] -> Int -> [String]
 list_from_string [] _ = []
 list_from_string list n = (unwords (take n list)) : list_from_string (drop n list) n
-
-
--- print_string_list :: [String] -> IO ()
--- print_string_list [] = putStr ""
--- print_string_list (x:xr) = do 
---                     putStrLn x
---                     print_string_list xr
-
--- print_field :: [Pos] -> [Pos] -> [Pos] -> [Pos] -> [Pos] -> [Pos] -> Int -> Int -> IO ()
--- print_field robots dirt child objects babypen robotbaby n m = print_string_list (list_from_string (tail (create_list (0,0) (create_matrix 0 0 n m) robots dirt child objects babypen robotbaby)) m)
 
 
 
@@ -121,7 +104,7 @@ breadth_first_search init pos seen queue elements notemty n m =
             ((head ((tail queue)++
                 (asosiate_father (not_in_list (not_in_list (val_pos (find_surrounding pos) n m) 
                     (get_init seen)) notemty) pos)))!!0) 
-            ((head queue): seen) --
+            ((head queue): seen) 
             ((tail queue)++
                 (asosiate_father (not_in_list (not_in_list (val_pos (find_surrounding pos) n m) 
                     (get_init seen)) notemty) pos)) 
